@@ -8,6 +8,10 @@ from chatbot import *
 # Set Streamlit page configuration
 st.set_page_config(page_title='ChatBot🤖', layout='wide')
 
+# Set up the Streamlit app layout
+st.title("🤖 Brance Chat Bot")
+st.subheader(" Powered by 🦜 LangChain + OpenAI + Streamlit")
+
 # Initialize session states
 if "generated" not in st.session_state:
     st.session_state["generated"] = []
@@ -65,13 +69,13 @@ with st.sidebar.expander("🛠️ ", expanded=True):
     COLLECTION_NAME = st.selectbox(label='Collection Name', options=['sbnri_full','sbnri','vetic','blue_nectar'])
     TEMPERATURE = st.slider(label='Temperature', min_value=0.0, max_value=1.0, value=0.0, step=0.1)
     SHOW_SOURCES = st.checkbox("Show Sources", value=False, key="show_sources")
-    SYSTEM_PROMPT = st.text_area(label='System Prompt',value="")
+
+with st.expander("Question Prompt",expanded=False):
     QUESTION_PROMPT = st.text_area(label= 'Question Prompt', value="")
     USE_QUESTION_PROMPT = st.checkbox("Use question prompt?", value=False, key="use_question_prompt")
 
-# Set up the Streamlit app layout
-st.title("🤖 Brance Chat Bot")
-st.subheader(" Powered by 🦜 LangChain + OpenAI + Streamlit")
+with st.expander("System Prompt",expanded=False):
+    SYSTEM_PROMPT = st.text_area(label='System Prompt',value="")
 
 # Ask the user to enter their OpenAI API key
 API_O = st.sidebar.text_input("API-KEY", type="password")
